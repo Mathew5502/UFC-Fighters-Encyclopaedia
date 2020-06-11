@@ -1,0 +1,121 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+import csv
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(263, 395)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+       
+        font = QtGui.QFont()
+        font.setFamily("Papyrus")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        font.setKerning(True)
+
+        
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(10, 50, 61, 20))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(10, 80, 61, 20))
+        self.label_2.setObjectName("label_2")
+        
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(10, 110, 71, 20))
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(10, 10, 231, 21))
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(10, 200, 71, 20))
+        self.label_5.setObjectName("label_5")
+        
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(10, 170, 61, 20))
+        self.label_6.setObjectName("label_6")
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setGeometry(QtCore.QRect(10, 140, 61, 20))
+        self.label_7.setObjectName("label_7")
+        self.label_8 = QtWidgets.QLabel(self.centralwidget)
+        self.label_8.setGeometry(QtCore.QRect(10, 230, 71, 20))
+        self.label_8.setObjectName("label_8")
+
+
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setGeometry(QtCore.QRect(90, 50, 151, 21))
+        self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setGeometry(QtCore.QRect(90, 80, 151, 21))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_3.setGeometry(QtCore.QRect(90, 110, 151, 21))
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_4.setGeometry(QtCore.QRect(90, 140, 151, 21))
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_5.setGeometry(QtCore.QRect(90, 170, 151, 21))
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_6.setGeometry(QtCore.QRect(90, 200, 151, 21))
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_7.setGeometry(QtCore.QRect(90, 230, 151, 21))
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        
+        
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(10, 260, 231, 91))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.clickMethod)
+        
+        
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 263, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def clickMethod(self):
+        with open("ufc_fighters.csv", "a", newline=None) as new_info:
+            csv_writer = csv.writer(new_info)
+            csv_writer.writerow([self.lineEdit.text(), self.lineEdit_2.text(), self.lineEdit_3.text(),
+                                 self.lineEdit_4.text(), self.lineEdit_5.text(), self.lineEdit_6.text(),
+                                 self.lineEdit_7.text()])
+
+            self.lineEdit.clear(), self.lineEdit_2.clear(), self.lineEdit_3.clear(),self.lineEdit_4.clear(),
+            self.lineEdit_5.clear(), self.lineEdit_6.clear(),self.lineEdit_7.clear()
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "First Name"))
+        self.label_2.setText(_translate("MainWindow", "Last Name"))
+        self.pushButton.setText(_translate("MainWindow", "Save"))
+        self.label_3.setText(_translate("MainWindow", "Age"))
+        self.label_4.setText(_translate("MainWindow", "Enter new fighter details"))
+        self.label_5.setText(_translate("MainWindow", "Draws"))
+        self.label_6.setText(_translate("MainWindow", "Losses"))
+        self.label_7.setText(_translate("MainWindow", "Wins"))
+        self.label_8.setText(_translate("MainWindow", "Weight Class"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
